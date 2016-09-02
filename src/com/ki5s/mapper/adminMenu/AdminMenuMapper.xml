@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ki5s.dao.adminMenu.AdminMenuDao">
+	<resultMap type="AdminMenu" id="ResultMap">
+		<!-- id -->
+		<id property="id" column="id" />
+		<id property="name" column="name" />
+		<id property="parentId" column="parentId" />
+		<id property="menuUrl" column="menuUrl" />
+		<id property="sort" column="sort" />
+	</resultMap>
+
+	<sql id="allColumnSql">
+		id,
+		name,
+		parentId,
+		menuUrl,
+		sort
+	</sql>
+	
+	<!-- 查询所有 -->
+	<select id="listAdminMenuAll" resultMap="ResultMap">
+		SELECT <include refid="allColumnSql"/>
+		FROM admin_menu
+		where 1=1
+		order by sort,parentId
+	</select>
+	<!-- 通过parentId查询 -->
+	<select id="listAdminMenuByParentId" resultMap="ResultMap" parameterType="String">
+		SELECT <include refid="allColumnSql"/>
+		FROM admin_menu
+		WHERE 1=1
+		AND parentId = #{parentId}
+	</select>
+	
+	<!-- 通过ID查询 -->
+	<select id="listAdminMenuById" resultMap="ResultMap" parameterType="String">
+		SELECT <include refid="allColumnSql"/>
+		FROM admin_menu
+		WHERE 1=1
+		AND id = #{id}
+	</select>
+	
+	<!-- 新增 -->
+	<insert id="add" parameterType="AdminMenu">
+		insert into admin_menu(
+			id,
+			name,
+			parentId,
+			menuUrl,
+			sort
+		)values{
+			#{id},
+			#{name},
+			#{parentId},
+			#{menuUrl},
+			#{sort}
+		}
+	</insert>
+	
+	
+	<!-- 修改 -->
+	<update id="update" parameterType="AdminMenu" >
+		update admin_menu set 
+		
+		name = #{name},
+		parentId = #{parentId},
+		menuUrl = #{menuUrl},
+		sort = #{sort}
+		
+		where 
+		id = #{id}
+	</update>
+	
+	<!-- 批量删除 -->
+	<delete id="delByIds">
+		DELETE FROM y_advert 
+		WHERE ID IN 
+		<foreach collection="ids" index="index" item="item" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+</mapper>

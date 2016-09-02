@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:cache="http://www.springframework.org/schema/cache"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd 
+                        http://www.springframework.org/schema/context 
+                        http://www.springframework.org/schema/context/spring-context-4.0.xsd
+                        http://www.springframework.org/schema/tx
+						http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+						http://www.springframework.org/schema/aop
+						http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+                        http://www.springframework.org/schema/mvc
+						http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+						http://www.springframework.org/schema/aop
+						http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+						http://www.springframework.org/schema/task
+						http://www.springframework.org/schema/task/spring-task-4.0.xsd
+						http://www.springframework.org/schema/cache
+						http://www.springframework.org/schema/cache/spring-cache.xsd
+						http://www.springframework.org/schema/mvc
+        				http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
+	<!-- 自动装配bean -->
+	<context:component-scan base-package="com.ki5s" />
+	
+	<!-- config  for task -->
+    <task:annotation-driven />
+
+	<context:property-placeholder location="classpath:/resources/appconfig.properties" />
+	<context:annotation-config />
+	<bean id="parentDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<property name="maxPoolSize" value="${pool.c3p0.maxPoolSize}" />
+		<property name="minPoolSize" value="${pool.c3p0.minPoolSize}" />
+		<property name="checkoutTimeout" value="${pool.c3p0.checkoutTimeout}" />
+		<property name="idleConnectionTestPeriod" value="${pool.c3p0.idleConnectionTestPeriod}" />
+		<property name="maxIdleTime" value="${pool.c3p0.maxIdleTime}" />
+		<property name="initialPoolSize" value="${pool.c3p0.initialPoolSize}" />
+		<property name="acquireIncrement" value="${pool.c3p0.acquireIncrement}" />
+		<property name="testConnectionOnCheckout" value="${pool.c3p0.testConnectionOnCheckout}" />
+		<property name="testConnectionOnCheckin" value="${pool.c3p0.testConnectionOnCheckin}" />
+	</bean>
+	
+	<!-- Data Source -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close" parent="parentDataSource">
+		<property name="driverClass" value="${jdbc.driverClass}" />
+		<property name="jdbcUrl" value="${jdbc.url}" />
+		<property name="user" value="${jdbc.user}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
+	
+	<!-- spring 事务 -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<!-- 开启spring 注解事务 -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	
+	<!-- 配置自动mapper -->
+	<bean name="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="annotationClass" value="org.springframework.stereotype.Repository" />
+		<property name="basePackage" value="com.ki5s" />
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+	</bean>
+	<!-- sessionFactory -->
+	<bean id="sqlSessionFactory" name="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:/resources/sqlmap-config.xml" />
+		<property name="mapperLocations">
+			<list>
+				<value>classpath:com/ki5s/mapper/*/*.xml</value>
+			</list>
+		</property>
+	</bean>
+	<!-- <mvc:interceptors>
+		后台是否登录拦截器
+	    <mvc:interceptor>
+	    	<mvc:mapping path="/admin/**/*.html"/>
+	    	<mvc:exclude-mapping path="/admin/login.html"/>
+	    	<mvc:exclude-mapping path="/admin/doLogin.html"/>
+	    	<bean class="com.ki5s.base.interceptor.AdminLoginInterceptor"/>
+	    </mvc:interceptor>
+	     <mvc:interceptor>
+	    	<mvc:mapping path="/**/*.html"/>
+	    	<bean class="com.ki5s.base.interceptor.FrontInterceptor"/>
+	    </mvc:interceptor>
+	</mvc:interceptors> -->
+	
+	<!-- post提价返回JSON时的配置 -->
+	<mvc:annotation-driven>
+        <mvc:message-converters register-defaults="false">
+            <!-- 避免IE执行AJAX时,返回JSON出现下载文件 -->
+            <bean id="fastJsonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <!-- 这里顺序不能反，一定先写text/html,不然ie下出现下载提示 -->
+                        <value>text/html;charset=UTF-8</value>
+                        <value>application/json;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+	
+	<!-- 对静态资源文件的访问 -->  
+    <mvc:resources mapping="/static/**" location="/static/" cache-period="31556926"/>  
+<!-- 	<mvc:resources mapping="/imgs/**" location="d:/" cache-period="31556926"/>  -->
+	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver" />
+	
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass">
+			<value>org.springframework.web.servlet.view.JstlView</value>
+		</property> 
+		<property name="prefix">
+			<value>/WEB-INF/pages</value>
+		</property>
+		<property name="suffix">
+			<value>.jsp</value>
+		</property>
+	</bean>
+
+
+	<!-- 启动监控 -->
+	<bean class="com.ki5s.base.system.SystemMonitor"/>
+	
+	<!-- 文件上传表单的视图解析器 -->  
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" >
+		<!-- 文件最大限制10M以内 -->
+<!-- 		<property name="maxUploadSize" value="1024000" />  -->
+	</bean>
+</beans>

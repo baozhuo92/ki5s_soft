@@ -1,0 +1,53 @@
+<component name="libraryTable">
+  <library name="lib">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/aopalliance.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/apache-commons.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/c3p0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/commons-codec-1.9.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/commons-fileupload-1.3.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/commons-io-2.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/commons-logging-1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/core-3.2.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/curvesapi-1.03.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/dom4j-1.6.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/fastjson-1.2.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/freemarker-2.3.19.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/httpclient.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/jackson-all-1.8.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/jackson-annotations-2.5.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/jackson-core-2.5.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/jackson-databind-2.5.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/java-unrar-0.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/javolution-5.5.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/json-lib-2.2.2-jdk15.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/json-simple-1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/json.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/jstl.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/junit-4.12.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/log4j.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/mail.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/mybatis-3.2.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/mybatis.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/mysql.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/poi-3.14-20160307.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/poi-examples-3.14-20160307.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/poi-excelant-3.14-20160307.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/poi-ooxml-3.14-20160307.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/poi-ooxml-schemas-3.14-20160307.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/poi-scratchpad-3.14-20160307.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/poi.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/Sdk4J.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/spring.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/standard.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/tscloud.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/ueditor-1.1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/urlrewrite-3.2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/validation.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/xmlbeans-2.6.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/log4j-1.2.17.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

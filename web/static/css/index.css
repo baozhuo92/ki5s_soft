@@ -1,0 +1,126 @@
+*{
+	margin:0px;
+	padding:0px;
+}
+body,html{
+	height:100%;
+	width: 100%;
+}
+ul{
+	list-style-type: none;
+}
+a{
+	text-decoration:none;
+}
+a:hover{
+	text-decoration:none;
+}
+#webTimer{
+	font-size: 1.5em;
+	color: azure;
+	padding-left:20px ;
+	padding-right:20px ;
+	line-height: 50px;
+}
+.row{
+	height: 100%;
+	width: 100%;
+	padding-left: 15px;
+}
+#webTop{
+	position: fixed;
+	top: 0px;
+	width: 100%;
+	height: 50px;
+	z-index:999;
+	background-color: #0099CC;
+}
+#topLeft a{
+	font-size: 1.5em;
+	color: azure;
+}
+
+#topLeft a:hover{
+	line-height: 50px;
+	font-size: 1.5em;
+	color: #F0E1E3
+}
+
+#topLeft a p{
+	padding-left:20px ;
+	padding-right:20px ;
+	float: left;
+	height: 50px;
+	line-height: 50px;
+	border-right:1px solid black ;
+}
+#topRight{
+	display: inline;
+	float: right;
+	margin-right:0px ;
+}
+#topRight div{
+	float: right;
+}
+#webNav{
+	margin: 0px;
+	padding: 0px;
+	padding-top:50px ;
+	left: 0px;
+	height: 100%;
+	background-color: #01101F;
+}
+#webContent{
+	padding-top:50px ;
+	height: 100%;
+	overflow:auto; 
+	background-color: #F0EFEE;
+}
+#dropdownMenu1{
+	border: 0px;
+	border-left:1px solid #000000;
+	border-right:1px solid #000000 ;
+	background-color: #0099CC;
+	height: 50px;
+	padding: 10px;
+}
+#dropdownMenu2{
+	border: 0px;
+	border-left:1px solid #000000;
+	border-right:1px solid #000000 ;
+	background-color: #0099CC;
+	height: 50px;
+	padding: 10px;
+}
+#dropdownMenu1 a{
+	color:black ;
+}
+#menuList{
+	margin: 0px;
+	margin-top:5px;
+	padding: 0px;
+}
+#menuList active{
+	background-color: #003147;
+}
+#side-menu>li{
+	border-top:1px solid #000000;
+}
+#side-menu>li>a{
+	font-size: 1.0em;
+	text-align: center;
+}
+#side-menu>li>ul a{
+	background-color: #404D5B;
+}
+#side-menu .active{
+	background-color:#003147;
+}
+#side-menu a:hover{
+	background-color: #003147
+}
+.menu-child{
+	display:none;
+	background-color: #404D5B;
+	text-align: center;
+}
